@@ -9,7 +9,7 @@ import (
 
 type MessageAttachment struct {
 	ID        string          `gorm:"primaryKey"`
-	MessageID string          `gorm:"column:message_id;not null"`
+	MessageID string          `gorm:"column:message_id;size:36;not null"`
 	Type      string          `gorm:"column:type;not null"`
 	Filename  string          `gorm:"column:filename"`
 	URL       string          `gorm:"column:url;not null"`

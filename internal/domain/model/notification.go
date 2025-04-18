@@ -9,8 +9,8 @@ import (
 
 type Notification struct {
 	ID        string          `gorm:"primaryKey"`
-	FromID    string          `gorm:"column:from_id;not null"`
-	ToID      string          `gorm:"column:to_id;not null;index:idx_notification_to_read"`
+	FromID    string          `gorm:"column:from_id;size:36;not null"`
+	ToID      string          `gorm:"column:to_id;size:36;not null;index:idx_notification_to_read"`
 	IsRead    bool            `gorm:"column:is_read;default:false;index:idx_notification_to_read"`
 	IsAccept  bool            `gorm:"column:is_accept;default:false"`
 	IsMarked  bool            `gorm:"column:is_marked;default:false"`

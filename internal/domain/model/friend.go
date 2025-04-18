@@ -9,11 +9,11 @@ import (
 
 type Friend struct {
 	ID         string          `gorm:"primaryKey"`
-	InviterID  string          `gorm:"column:inviter_id;not null;uniqueIndex:idx_friend_inviter_accepter"`
-	AccepterID string          `gorm:"column:accepter_id;not null;uniqueIndex:idx_friend_inviter_accepter"`
+	InviterID  string          `gorm:"column:inviter_id;size:36;not null;uniqueIndex:idx_friend_inviter_accepter"`
+	AccepterID string          `gorm:"column:accepter_id;size:36;not null;uniqueIndex:idx_friend_inviter_accepter"`
 	CreatedAt  time.Time       `gorm:"column:created_at"`
 	UpdatedAt  time.Time       `gorm:"column:updated_at"`
-	DeletedAt  *gorm.DeletedAt `gorm:"column:updated_at"`
+	DeletedAt  *gorm.DeletedAt `gorm:"column:deleted_at"`
 
 	// Relationships
 	Inviter  User `gorm:"foreignKey:InviterID"`

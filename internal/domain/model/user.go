@@ -17,7 +17,7 @@ type User struct {
 	Role      string          `gorm:"column:role;default:'user'"`
 	CreatedAt time.Time       `gorm:"column:created_at"`
 	UpdatedAt time.Time       `gorm:"column:updated_at"`
-	DeletedAt *gorm.DeletedAt `gorm:"column:updated_at"`
+	DeletedAt *gorm.DeletedAt `gorm:"column:deleted_at"`
 }
 
 func (user *User) BeforeCreate(tx *gorm.DB) error {
