@@ -1,0 +1,85 @@
+services:
+  chat.app:
+    container_name: chat.app
+    platform: linux/amd64
+    pid: 'host'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT}
+      HTTP_PORT: ${HTTP_PORT}
+      AUTH_SECRET: ${AUTH_SECRET}
+      DATABASE_URI: ${DATABASE_URI}
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT}
+      MINIO_BUCKET: ${MINIO_BUCKET}
+      MINIO_BASEURL: ${MINIO_BASEURL}
+      MINIO_USESSL: ${MINIO_USESSL}
+      REDIS_URI: ${REDIS_URI}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_DB: ${REDIS_DB}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_USER: ${MAIL_USER}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      MAIL_FROM: ${MAIL_FROM}
+    ports:
+      - '8080:8080'
+    depends_on:
+      - chat.db
+      - chat.minio
+      - chat.redis
+    restart: unless-stopped
+
+  chat.db:
+    image: mysql:8.0.29
+    container_name: mysql
+    environment:
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+      MYSQL_TCP_PORT: 3306
+    restart: always
+    volumes:
+      - chat_mysql_data:/var/lib/mysql
+    ports:
+      - '3307:3306'
+  chat.minio:
+    image: minio/minio:latest
+    container_name: chat.minio
+    ports:
+      - '9000:9000' # MinIO API
+      - '9001:9001' # MinIO Console
+    restart: unless-stopped
+    volumes:
+      - chat_minio_data:/data
+      - chat_minio_config:/root/.minio
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    command: server /data --console-address ":9001"
+
+  chat.redis:
+    image: redis:latest
+    container_name: chat.redis
+    restart: unless-stopped
+    ports:
+      - '6389:6379'
+    volumes:
+      - chat_redis_data:/data
+    environment:
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_DATABASES: ${REDIS_DB}
+    command: ['redis-server', '--appendonly', 'yes', '--requirepass', 'password']
+
+volumes:
+  chat_mysql_data:
+    name: chat_mysql_data
+  chat_minio_data:
+    name: chat_minio_data
+  chat_minio_config:
+    name: chat_minio_config
+  chat_redis_data:
+    name: chat_redis_data
