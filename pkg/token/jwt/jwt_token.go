@@ -32,7 +32,14 @@ func NewJTWMarker() (*JTWMarker, error) {
 
 func (j *JTWMarker) GenerateAccessToken(payload *token.AuthPayload) string {
 	cfg := config.GetConfig()
-	newPayload := token.NewAuthPayload(payload.ID, payload.Email, payload.Role, time.Minute, j.AccessTokenType)
+	newPayload := token.NewAuthPayload(
+		payload.ID,
+		payload.Email,
+		payload.Role,
+		time.Minute,
+		j.AccessTokenType,
+		payload.Jit,
+	)
 
 	tokenContent := jwt.MapClaims{
 		"payload": newPayload,
@@ -50,7 +57,15 @@ func (j *JTWMarker) GenerateAccessToken(payload *token.AuthPayload) string {
 
 func (j *JTWMarker) GenerateRefreshToken(payload *token.AuthPayload) string {
 	cfg := config.GetConfig()
-	newPayload := token.NewAuthPayload(payload.ID, payload.Email, payload.Role, time.Minute, j.RefreshTokenType)
+	newPayload := token.NewAuthPayload(
+		payload.ID,
+		payload.Email,
+		payload.Role,
+		time.Minute,
+		j.RefreshTokenType,
+		payload.Jit,
+	)
+
 	tokenContent := jwt.MapClaims{
 		"payload": newPayload,
 		"exp":     time.Now().Add(time.Second * RefreshTokenExpiredTime).Unix(),

@@ -17,16 +17,26 @@ func NewMessageHandler( /* Pass dependencies here */ ) *MessageHandler {
 }
 
 // SendMessage handles requests to send a new message (group or direct).
-func (h *MessageHandler) SendMessage(ctx *gin.Context)
+func (h *MessageHandler) SendMessage(ctx *gin.Context) {
+
+}
 
 // GetGroupMessages handles requests to retrieve messages for a specific group.
-func (h *MessageHandler) GetGroupMessages(ctx *gin.Context)
+func (h *MessageHandler) GetGroupMessages(ctx *gin.Context) {
+
+}
 
 // GetConversationMessages handles requests to retrieve messages for a specific conversation.
-func (h *MessageHandler) GetConversationMessages(ctx *gin.Context)
+func (h *MessageHandler) GetConversationMessages(ctx *gin.Context) {
+
+}
 
 // EditMessage handles requests to edit an existing message (optional).
-// func (h *MessageHandler) EditMessage(ctx *gin.Context)
+func (h *MessageHandler) EditMessage(ctx *gin.Context) {
+
+}
 
 // DeleteMessage handles requests to delete an existing message (optional).
-// func (h *MessageHandler) DeleteMessage(ctx *gin.Context)
+func (h *MessageHandler) DeleteMessage(ctx *gin.Context) {
+
+}

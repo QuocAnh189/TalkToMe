@@ -17,13 +17,21 @@ func NewNotificationHandler( /* Pass dependencies here */ ) *NotificationHandler
 }
 
 // ListNotifications handles requests to list notifications for the current user.
-func (h *NotificationHandler) ListNotifications(ctx *gin.Context)
+func (h *NotificationHandler) ListNotifications(ctx *gin.Context) {
+
+}
 
 // MarkAsRead handles requests to mark a specific notification as read.
-func (h *NotificationHandler) MarkAsRead(ctx *gin.Context)
+func (h *NotificationHandler) MarkAsRead(ctx *gin.Context) {
+
+}
 
 // MarkAllAsRead handles requests to mark all notifications as read.
-func (h *NotificationHandler) MarkAllAsRead(ctx *gin.Context)
+func (h *NotificationHandler) MarkAllAsRead(ctx *gin.Context) {
+
+}
 
 // DeleteNotification handles requests to delete a notification.
-func (h *NotificationHandler) DeleteNotification(ctx *gin.Context)
+func (h *NotificationHandler) DeleteNotification(ctx *gin.Context) {
+
+}

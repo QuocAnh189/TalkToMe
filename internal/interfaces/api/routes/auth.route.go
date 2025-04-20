@@ -1,23 +1,41 @@
 package routes
 
 import (
+	"gochat/internal/application/service"
+	"gochat/internal/infrashstructrure/cache"
+	"gochat/internal/infrashstructrure/persistence/db"
+	"gochat/internal/infrashstructrure/persistence/repository"
+	"gochat/internal/interfaces/api/handler"
+	"gochat/internal/interfaces/api/middlewares"
+	"gochat/pkg/mail"
+	"gochat/pkg/storage"
+	"gochat/pkg/token"
+	"gochat/pkg/validation"
+
 	"github.com/gin-gonic/gin"
 )
 
-func NewAuthRoutes(r *gin.RouterGroup) {
+func NewAuthRoutes(
+	r *gin.RouterGroup,
+	sqlDB db.IDatabase,
+	validator validation.Validation,
+	storage storage.IUploadService,
+	cache cache.IRedis,
+	mailer mail.IMailer,
+	token token.IMarker,
+) {
+	userRepository := repository.NewUserRepository(sqlDB)
+	authService := service.NewAuthService(validator, userRepository, storage, cache, mailer, token)
+	authHandler := handler.NewAuthHandler(authService)
+
+	authMiddleware := middlewares.NewAuthMiddleware(token, cache).TokenAuth()
+	refreshMiddleware := middlewares.NewAuthMiddleware(token, cache).TokenRefresh()
+
 	authRoutes := r.Group("/auth")
 	{
-		authRoutes.POST("/signup", func(ctx *gin.Context) {
-			ctx.JSON(200, gin.H{"message": "signup"})
-		})
-		authRoutes.POST("/signin", func(ctx *gin.Context) {
-			ctx.JSON(200, gin.H{"message": "signin"})
-		})
-		authRoutes.POST("/signout", func(ctx *gin.Context) {
-			ctx.JSON(200, gin.H{"message": "signout"})
-		})
-		authRoutes.POST("/refresh-token", func(ctx *gin.Context) {
-			ctx.JSON(200, gin.H{"message": "refresh-token"})
-		})
+		authRoutes.POST("/signup", authHandler.SignUp)
+		authRoutes.POST("/signin", authHandler.SignIn)
+		authRoutes.POST("/signout", authMiddleware, authHandler.SignOut)
+		authRoutes.POST("/refresh-token", refreshMiddleware, authHandler.RefreshToken)
 	}
 }

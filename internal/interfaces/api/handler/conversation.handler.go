@@ -17,13 +17,21 @@ func NewConversationHandler( /* Pass dependencies here */ ) *ConversationHandler
 }
 
 // ListConversations handles requests to list conversations for the current user.
-func (h *ConversationHandler) ListConversations(ctx *gin.Context)
+func (h *ConversationHandler) ListConversations(ctx *gin.Context) {
+
+}
 
 // GetOrCreateConversation handles requests to get or create a conversation with a specific user.
-func (h *ConversationHandler) GetOrCreateConversation(ctx *gin.Context)
+func (h *ConversationHandler) GetOrCreateConversation(ctx *gin.Context) {
+
+}
 
 // GetConversationDetails handles requests to get details of a specific conversation.
-func (h *ConversationHandler) GetConversationDetails(ctx *gin.Context)
+func (h *ConversationHandler) GetConversationDetails(ctx *gin.Context) {
+
+}
 
 // DeleteConversation handles requests to delete (or hide) a conversation for the user.
-func (h *ConversationHandler) DeleteConversation(ctx *gin.Context)
+func (h *ConversationHandler) DeleteConversation(ctx *gin.Context) {
+
+}

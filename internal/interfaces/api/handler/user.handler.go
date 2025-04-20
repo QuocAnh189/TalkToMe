@@ -17,13 +17,21 @@ func NewUserHandler( /* Pass dependencies here */ ) *UserHandler {
 }
 
 // GetProfile handles requests to get the current user's profile.
-func (h *UserHandler) GetProfile(ctx *gin.Context)
+func (h *UserHandler) GetProfile(ctx *gin.Context) {
+
+}
 
 // UpdateProfile handles requests to update the current user's profile.
-func (h *UserHandler) UpdateProfile(ctx *gin.Context)
+func (h *UserHandler) UpdateProfile(ctx *gin.Context) {
+
+}
 
 // GetUserByID handles requests to get a user's profile by their ID.
-func (h *UserHandler) GetUserByID(ctx *gin.Context)
+func (h *UserHandler) GetUserByID(ctx *gin.Context) {
+
+}
 
 // SearchUsers handles requests to search for users.
-func (h *UserHandler) SearchUsers(ctx *gin.Context)
+func (h *UserHandler) SearchUsers(ctx *gin.Context) {
+
+}
