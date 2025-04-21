@@ -6,11 +6,11 @@ import (
 
 type Hub struct {
 	clients        map[*Client]bool
-	groups         map[string]map[*Client]bool // Map of group ID to a set of clients in that group
-	broadcast      chan []byte                 // General broadcast messages
+	groups         map[string]map[*Client]bool
+	broadcast      chan []byte
 	register       chan *Client
 	unregister     chan *Client
-	friendRequests map[string]map[string]bool // userID -> map of pending friend requests (targetUserID -> true)
+	friendRequests map[string]map[string]bool
 }
 
 func NewHub() *Hub {

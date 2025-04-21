@@ -37,7 +37,7 @@ type Message struct {
 	GroupID         string `json:"group_id,omitempty"`
 	Content         string `json:"content,omitempty"`
 	RequesterUserID string `json:"requester_user_id,omitempty"`
-	SenderUserID    string `json:"sender_user_id,omitempty"` // Useful for group messages
+	SenderUserID    string `json:"sender_user_id,omitempty"`
 }
 
 func (c *Client) readPump() {

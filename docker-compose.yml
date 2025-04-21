@@ -30,7 +30,6 @@ services:
       - chat.minio
       - chat.redis
     restart: unless-stopped
-
   chat.db:
     image: mysql:8.0.29
     container_name: mysql
@@ -59,7 +58,6 @@ services:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     command: server /data --console-address ":9001"
-
   chat.redis:
     image: redis:latest
     container_name: chat.redis
