@@ -2,6 +2,7 @@ package dto
 
 import (
 	"gochat/pkg/paging"
+	"mime/multipart"
 	"time"
 )
 
@@ -16,14 +17,9 @@ type UserResponse struct {
 }
 
 type UpdateProfileRequest struct {
-	Name      *string `json:"name" binding:"omitempty,min=2"`
-	AvatarURL *string `json:"avatar_url" binding:"omitempty,url"`
-}
-
-type UserSearchQuery struct {
-	Query string `form:"q" binding:"required"`
-	Limit int    `form:"limit,default=10"`
-	Page  int    `form:"page,default=1"`
+	Name   *string               `form:"name"`
+	Email  *string               `form:"email"`
+	Avatar *multipart.FileHeader `form:"avatar"`
 }
 
 type ListUserRequest struct {
@@ -34,6 +30,7 @@ type ListUserRequest struct {
 	OrderDesc bool   `json:"-" form:"order_desc"`
 	TakeAll   bool   `json:"-" form:"take_all"`
 }
+
 type ListUserResponse struct {
 	Users      []*UserResponse    `json:"items"`
 	Pagination *paging.Pagination `json:"metadata"`

@@ -19,7 +19,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type UserService struct {
+type AuthService struct {
 	validator validation.Validation
 	userRepo  repository.IUserRepository
 	storage   storage.IUploadService
@@ -35,8 +35,8 @@ func NewAuthService(
 	cache cache.IRedis,
 	mailer mail.IMailer,
 	token token.IMarker,
-) *UserService {
-	return &UserService{
+) *AuthService {
+	return &AuthService{
 		validator: validator,
 		userRepo:  userRepo,
 		storage:   storage,
@@ -46,12 +46,12 @@ func NewAuthService(
 	}
 }
 
-func (u *UserService) SignIn(ctx context.Context, req *dto.SignInRequest) (string, string, *model.User, error) {
-	if err := u.validator.ValidateStruct(req); err != nil {
+func (a *AuthService) SignIn(ctx context.Context, req *dto.SignInRequest) (string, string, *model.User, error) {
+	if err := a.validator.ValidateStruct(req); err != nil {
 		return "", "", nil, err
 	}
 
-	user, err := u.userRepo.FindByEmail(ctx, req.Email)
+	user, err := a.userRepo.FindByEmail(ctx, req.Email)
 	if err != nil {
 		logger.Errorf("Login.GetUserByEmail fail, email: %s, error: %s", req.Email, err)
 		return "", "", nil, err
@@ -69,21 +69,21 @@ func (u *UserService) SignIn(ctx context.Context, req *dto.SignInRequest) (strin
 		Type:  token.AccessTokenType,
 	}
 
-	accessToken := u.token.GenerateAccessToken(&tokenData)
-	refreshToken := u.token.GenerateRefreshToken(&tokenData)
+	accessToken := a.token.GenerateAccessToken(&tokenData)
+	refreshToken := a.token.GenerateRefreshToken(&tokenData)
 
 	return accessToken, refreshToken, user, nil
 }
 
-func (u *UserService) SignUp(ctx context.Context, req *dto.SignUpRequest) (string, string, *model.User, error) {
-	if err := u.validator.ValidateStruct(req); err != nil {
+func (a *AuthService) SignUp(ctx context.Context, req *dto.SignUpRequest) (string, string, *model.User, error) {
+	if err := a.validator.ValidateStruct(req); err != nil {
 		return "", "", nil, err
 	}
 
 	var avatarUrlUpload = ""
 	logger.Info("req.FileName: ", req.Avatar.Filename)
 	if req.Avatar != nil && req.Avatar.Filename != "" {
-		avatarURL, err := u.storage.UploadFile(ctx, req.Avatar, "users")
+		avatarURL, err := a.storage.UploadFile(ctx, req.Avatar, "users")
 		if err != nil {
 			logger.Errorf("Failed to upload avatar: %s", err)
 			return "", "", nil, err
@@ -95,13 +95,13 @@ func (u *UserService) SignUp(ctx context.Context, req *dto.SignUpRequest) (strin
 	utils.MapStruct(&user, &req)
 	user.AvatarURL = avatarUrlUpload
 
-	err := u.userRepo.Create(ctx, user)
+	err := a.userRepo.Create(ctx, user)
 	if err != nil {
 		logger.Errorf("Register.Create fail, email: %s, error: %s", req.Email, err)
 		return "", "", nil, err
 	}
 
-	if err := u.mailer.Send(user.Email, "Hello!", "<h1>Congratulations</h1><p>Your account has been successfully created</p>", true); err != nil {
+	if err := a.mailer.Send(user.Email, "Hello!", "<h1>Congratulations</h1><p>Your account has been successfully created</p>", true); err != nil {
 		logger.Errorf("Send mail failure: %v", err)
 	}
 
@@ -111,17 +111,17 @@ func (u *UserService) SignUp(ctx context.Context, req *dto.SignUpRequest) (strin
 		Role:  user.Role,
 	}
 
-	accessToken := u.token.GenerateAccessToken(&tokenData)
-	refreshToken := u.token.GenerateRefreshToken(&tokenData)
+	accessToken := a.token.GenerateAccessToken(&tokenData)
+	refreshToken := a.token.GenerateRefreshToken(&tokenData)
 
 	return accessToken, refreshToken, user, nil
 }
 
-func (u *UserService) SignOut(ctx context.Context, userID string, jit string) error {
+func (a *AuthService) SignOut(ctx context.Context, userID string, jit string) error {
 	value := `{"status": "blacklisted"}`
 
 	// err := u.cache.Set(fmt.Sprintf("blacklist:%s", strings.ReplaceAll(token, " ", "_")), value)
-	err := u.cache.Set(fmt.Sprintf("blacklist:%s_%s", userID, jit), value)
+	err := a.cache.Set(fmt.Sprintf("blacklist:%s_%s", userID, jit), value)
 	if err != nil {
 		logger.Error("Failed to blacklist token: ", err)
 		return err
@@ -131,8 +131,8 @@ func (u *UserService) SignOut(ctx context.Context, userID string, jit string) er
 	return nil
 }
 
-func (u *UserService) RefreshToken(ctx context.Context, userId string, jit string) (string, error) {
-	user, err := u.userRepo.FindByID(ctx, userId)
+func (a *AuthService) RefreshToken(ctx context.Context, userId string, jit string) (string, error) {
+	user, err := a.userRepo.FindByID(ctx, userId)
 	if err != nil {
 		logger.Errorf("RefreshToken.GetUserByID fail, id: %s, error: %s", userId, err)
 		return "", err
@@ -146,6 +146,6 @@ func (u *UserService) RefreshToken(ctx context.Context, userId string, jit strin
 		Type:  token.AccessTokenType,
 	}
 
-	accessToken := u.token.GenerateAccessToken(&tokenData)
+	accessToken := a.token.GenerateAccessToken(&tokenData)
 	return accessToken, nil
 }
