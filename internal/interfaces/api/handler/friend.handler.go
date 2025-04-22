@@ -1,37 +1,85 @@
 package handler
 
 import (
+	"gochat/internal/application/dto"
+	"gochat/internal/domain/service"
+	"gochat/pkg/logger"
+	"gochat/pkg/response"
+	"gochat/utils"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
-	// Import necessary service interfaces, e.g., "gochat/internal/domain/service"
 )
 
-// FriendHandler handles friendship related requests.
 type FriendHandler struct {
-	// Add dependencies like friendship service:
-	// friendshipService service.IFriendshipService
+	friendService service.IFriendshipService
 }
 
-// NewFriendHandler creates a new FriendHandler.
-func NewFriendHandler( /* Pass dependencies here */ ) *FriendHandler {
-	return &FriendHandler{ /* Initialize dependencies */ }
+func NewFriendHandler(friendService service.IFriendshipService) *FriendHandler {
+	return &FriendHandler{
+		friendService: friendService,
+	}
 }
 
-// SendFriendRequest handles requests to send a friend invitation.
-func (h *FriendHandler) SendFriendRequest(ctx *gin.Context) {
+func (h *FriendHandler) AddFriend(c *gin.Context) {
+	var req dto.AddFriendRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		logger.Error("Failed to get body ", err)
+		response.Error(c, http.StatusBadRequest, err, "Invalid parameters")
+		return
+	}
 
+	err := h.friendService.AddFriend(c, &req)
+	if err != nil {
+		logger.Error("Failed to accept friend request: ", err)
+		response.Error(c, http.StatusInternalServerError, err, "Failed to accept friend request")
+		return
+	}
+
+	response.JSON(c, http.StatusOK, "Add friends successfully")
 }
 
-// AcceptFriendRequest handles requests to accept a friend invitation.
-func (h *FriendHandler) AcceptFriendRequest(ctx *gin.Context) {
+func (h *FriendHandler) ListFriends(c *gin.Context) {
+	userID := c.GetString("userId")
+	if userID == "" {
+		response.Error(c, http.StatusUnauthorized, nil, "Unauthorized")
+		return
+	}
 
+	var req dto.ListFriendRequest
+	if err := c.ShouldBind(&req); err != nil {
+		logger.Error("Failed to get query", err)
+		response.Error(c, http.StatusBadRequest, err, "Invalid parameters")
+		return
+	}
+
+	friends, pagination, err := h.friendService.ListFriends(c, &req, userID)
+	if err != nil {
+		logger.Error("Failed to list friends: ", err)
+		response.Error(c, http.StatusInternalServerError, err, "Failed to list friends")
+		return
+	}
+
+	var res dto.ListFriendResponse
+	utils.MapStruct(&res.Users, friends)
+	res.Pagination = pagination
+	response.JSON(c, http.StatusOK, res)
 }
 
-// ListFriends handles requests to list the current user's friends.
-func (h *FriendHandler) ListFriends(ctx *gin.Context) {
+func (h *FriendHandler) RemoveFriend(c *gin.Context) {
+	var req dto.RemoveFriendRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		logger.Error("Failed to get body ", err)
+		response.Error(c, http.StatusBadRequest, err, "Invalid parameters")
+		return
+	}
 
-}
+	err := h.friendService.RemoveFriend(c, req.FromID, req.ToID)
+	if err != nil {
+		logger.Error("Failed to remove friend: ", err)
+		response.Error(c, http.StatusInternalServerError, err, "Failed to remove friend")
+		return
+	}
 
-// RemoveFriend handles requests to remove a friend.
-func (h *FriendHandler) RemoveFriend(ctx *gin.Context) {
-
+	response.JSON(c, http.StatusOK, "Friend removed successfully")
 }

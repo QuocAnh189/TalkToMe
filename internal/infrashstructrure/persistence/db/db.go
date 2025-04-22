@@ -195,8 +195,19 @@ func (d *Database) applyOptions(opts ...FindOption) *gorm.DB {
 	}
 
 	if opt.query != nil {
-		for _, q := range opt.query {
-			query = query.Where(q.Query, q.Args)
+		whereClause := ""
+		var args []interface{}
+
+		for i, q := range opt.query {
+			if i > 0 {
+				whereClause += " AND "
+			}
+			whereClause += "(" + q.Query + ")"
+			args = append(args, q.Args...)
+		}
+
+		if whereClause != "" {
+			query = query.Where(whereClause, args...)
 		}
 	}
 

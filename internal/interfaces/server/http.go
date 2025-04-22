@@ -79,7 +79,7 @@ func (s *Server) MapRoutes() error {
 	routesV1 := s.engine.Group("/api/v1")
 	routes.NewAuthRoutes(routesV1, s.db, s.validator, s.storage, s.cache, s.mailer, s.token)
 	routes.NewUserRoutes(routesV1, s.db, s.validator, s.storage, s.cache, s.token)
-	routes.NewFriendRoutes(routesV1)
+	routes.NewFriendRoutes(routesV1, s.db, s.validator, s.cache, s.token)
 	routes.NewGroupRoutes(routesV1)
 	routes.NewConversationRoutes(routesV1)
 	routes.NewMessageRoutes(routesV1)
