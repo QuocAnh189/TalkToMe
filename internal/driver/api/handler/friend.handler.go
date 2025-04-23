@@ -12,12 +12,12 @@ import (
 )
 
 type FriendHandler struct {
-	friendService service.IFriendshipService
+	service service.IFriendshipService
 }
 
-func NewFriendHandler(friendService service.IFriendshipService) *FriendHandler {
+func NewFriendHandler(service service.IFriendshipService) *FriendHandler {
 	return &FriendHandler{
-		friendService: friendService,
+		service: service,
 	}
 }
 
@@ -29,7 +29,7 @@ func (h *FriendHandler) AddFriend(c *gin.Context) {
 		return
 	}
 
-	err := h.friendService.AddFriend(c, &req)
+	err := h.service.AddFriend(c, &req)
 	if err != nil {
 		logger.Error("Failed to accept friend request: ", err)
 		response.Error(c, http.StatusInternalServerError, err, "Failed to accept friend request")
@@ -53,7 +53,7 @@ func (h *FriendHandler) ListFriends(c *gin.Context) {
 		return
 	}
 
-	friends, pagination, err := h.friendService.ListFriends(c, &req, userID)
+	friends, pagination, err := h.service.ListFriends(c, &req, userID)
 	if err != nil {
 		logger.Error("Failed to list friends: ", err)
 		response.Error(c, http.StatusInternalServerError, err, "Failed to list friends")
@@ -74,7 +74,7 @@ func (h *FriendHandler) RemoveFriend(c *gin.Context) {
 		return
 	}
 
-	err := h.friendService.RemoveFriend(c, req.FromID, req.ToID)
+	err := h.service.RemoveFriend(c, req.FromID, req.ToID)
 	if err != nil {
 		logger.Error("Failed to remove friend: ", err)
 		response.Error(c, http.StatusInternalServerError, err, "Failed to remove friend")

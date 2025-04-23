@@ -1,6 +1,9 @@
 package dto
 
-import "time"
+import (
+	"gochat/pkg/paging"
+	"time"
+)
 
 type GetOrCreateConversationRequest struct {
 	TargetUserID string `json:"target_user_id" binding:"required"`
@@ -14,7 +17,15 @@ type ConversationResponse struct {
 	UpdatedAt    time.Time        `json:"updated_at"`
 }
 
-type ConversationQuery struct {
-	Limit int `form:"limit,default=20"`
-	Page  int `form:"page,default=1"`
+type ListConversationRequest struct {
+	Page      int64  `json:"-" form:"page"`
+	Limit     int64  `json:"-" form:"size"`
+	OrderBy   string `json:"-" form:"order_by"`
+	OrderDesc bool   `json:"-" form:"order_desc"`
+	TakeAll   bool   `json:"-" form:"take_all"`
+}
+
+type ListConversationResponse struct {
+	Users      []*ConversationResponse `json:"items"`
+	Pagination *paging.Pagination      `json:"metadata"`
 }

@@ -11,10 +11,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"gochat/internal/driver/api/routes"
+	"gochat/internal/driver/websocket"
 	"gochat/internal/infrashstructrure/cache"
 	"gochat/internal/infrashstructrure/persistence/db"
-	"gochat/internal/interfaces/api/routes"
-	"gochat/internal/interfaces/websocket"
 )
 
 type Server struct {
@@ -83,6 +83,6 @@ func (s *Server) MapRoutes() error {
 	routes.NewGroupRoutes(routesV1)
 	routes.NewConversationRoutes(routesV1)
 	routes.NewMessageRoutes(routesV1)
-	routes.NewNotificationRoutes(routesV1)
+	routes.NewNotificationRoutes(routesV1, s.db, s.validator, s.cache, s.token)
 	return nil
 }

@@ -2,11 +2,11 @@ package routes
 
 import (
 	"gochat/internal/application/service"
+	"gochat/internal/driver/api/handler"
+	"gochat/internal/driver/api/middlewares"
 	"gochat/internal/infrashstructrure/cache"
 	"gochat/internal/infrashstructrure/persistence/db"
 	"gochat/internal/infrashstructrure/persistence/repository"
-	"gochat/internal/interfaces/api/handler"
-	"gochat/internal/interfaces/api/middlewares"
 	"gochat/pkg/mail"
 	"gochat/pkg/storage"
 	"gochat/pkg/token"

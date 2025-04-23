@@ -7,10 +7,10 @@ import (
 	"gochat/pkg/validation"
 
 	"gochat/config"
+	"gochat/internal/driver/server"
+	"gochat/internal/driver/websocket"
 	"gochat/internal/infrashstructrure/persistence/db"
 	"gochat/internal/infrashstructrure/persistence/migration"
-	"gochat/internal/interfaces/server"
-	"gochat/internal/interfaces/websocket"
 	"gochat/pkg/logger"
 	"sync"
 
