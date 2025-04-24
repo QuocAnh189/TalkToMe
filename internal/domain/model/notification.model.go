@@ -17,8 +17,8 @@ type Notification struct {
 	IsAccept  bool            `json:"is_accept" gorm:"column:is_accept;default:false"`
 	IsMarked  bool            `json:"is_marked" gorm:"column:is_marked;default:false"`
 	CreatedAt time.Time       `json:"created_at" gorm:"column:created_at"`
-	UpdatedAt time.Time       `gorm:"column:updated_at"`
-	DeletedAt *gorm.DeletedAt `gorm:"column:deleted_at"`
+	UpdatedAt time.Time       `json:"updated_at" gorm:"column:updated_at"`
+	DeletedAt *gorm.DeletedAt `json:"deleted_at" gorm:"column:deleted_at"`
 
 	// Relationships
 	FromUser User `json:"from_user" gorm:"foreignKey:FromID"`

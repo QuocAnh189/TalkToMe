@@ -8,16 +8,16 @@ import (
 )
 
 type GroupUser struct {
-	ID        string          `gorm:"primaryKey"`
-	UserID    string          `gorm:"column:user_id;size:36;not null"`
-	GroupID   string          `gorm:"column:group_id;size:36;not null"`
-	CreatedAt time.Time       `gorm:"column:created_at"`
-	UpdatedAt time.Time       `gorm:"column:updated_at"`
-	DeletedAt *gorm.DeletedAt `gorm:"column:deleted_at"`
+	ID        string          `json:"id" gorm:"primaryKey"`
+	UserID    string          `json:"user_id" gorm:"column:user_id;size:36;not null"`
+	GroupID   string          `json:"group_id" gorm:"column:group_id;size:36;not null"`
+	CreatedAt time.Time       `json:"created_at" gorm:"column:created_at"`
+	UpdatedAt time.Time       `json:"updated_at" gorm:"column:updated_at"`
+	DeletedAt *gorm.DeletedAt `json:"deleted_at" gorm:"column:deleted_at"`
 
 	// Relationships
-	User  User  `gorm:"foreignKey:UserID"`
-	Group Group `gorm:"foreignKey:GroupID"`
+	User  User  `json:"user" gorm:"foreignKey:UserID"`
+	Group Group `json:"group" gorm:"foreignKey:GroupID"`
 }
 
 func (group_user *GroupUser) BeforeCreate(tx *gorm.DB) error {
