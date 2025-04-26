@@ -7,6 +7,7 @@ import (
 	"gochat/internal/domain/repository"
 	"gochat/pkg/paging"
 	"gochat/pkg/validation"
+	"gochat/utils"
 )
 
 type FriendService struct {
@@ -44,10 +45,8 @@ func (f *FriendService) AddFriend(ctx context.Context, req *dto.AddFriendRequest
 		return nil
 	}
 
-	friend := &model.Friend{
-		InviterID:  req.InviterID,
-		AccepterID: req.AccepterID,
-	}
+	var friend *model.Friend
+	utils.MapStruct(&friend, req)
 
 	return f.friendRepo.Create(ctx, friend)
 }

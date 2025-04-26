@@ -10,6 +10,7 @@ type option struct {
 	offset   int
 	limit    int
 	preloads []string
+	joins    []string
 }
 
 type optionFn func(*option)
@@ -45,6 +46,12 @@ func WithOrder(order interface{}) FindOption {
 func WithPreload(preloads []string) FindOption {
 	return optionFn(func(opt *option) {
 		opt.preloads = preloads
+	})
+}
+
+func WithJoin(joins ...string) FindOption {
+	return optionFn(func(opt *option) {
+		opt.joins = append(opt.joins, joins...)
 	})
 }
 

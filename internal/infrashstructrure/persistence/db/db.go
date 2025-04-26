@@ -194,6 +194,12 @@ func (d *Database) applyOptions(opts ...FindOption) *gorm.DB {
 		}
 	}
 
+	if len(opt.joins) != 0 {
+		for _, join := range opt.joins {
+			query = query.Joins(join)
+		}
+	}
+
 	if opt.query != nil {
 		whereClause := ""
 		var args []interface{}
