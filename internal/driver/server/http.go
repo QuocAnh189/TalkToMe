@@ -82,7 +82,7 @@ func (s *Server) MapRoutes() error {
 	routes.NewFriendRoutes(routesV1, s.db, s.validator, s.cache, s.token)
 	routes.NewGroupRoutes(routesV1, s.db, s.validator, s.storage, s.cache, s.token)
 	routes.NewConversationRoutes(routesV1, s.db, s.validator, s.cache, s.token)
-	routes.NewMessageRoutes(routesV1)
+	routes.NewMessageRoutes(routesV1, s.db, s.validator, s.storage, s.cache, s.token)
 	routes.NewNotificationRoutes(routesV1, s.db, s.validator, s.cache, s.token)
 	return nil
 }

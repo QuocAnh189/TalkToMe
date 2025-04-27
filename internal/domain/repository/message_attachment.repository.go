@@ -11,4 +11,5 @@ type IMessageAttachmentRepository interface {
 	FindByMessageID(ctx context.Context, messageID string) ([]*model.MessageAttachment, error)
 	FindByID(ctx context.Context, id string) (*model.MessageAttachment, error)
 	Delete(ctx context.Context, id string) error
+	DeleteByMessageID(ctx context.Context, messageID string) error
 }

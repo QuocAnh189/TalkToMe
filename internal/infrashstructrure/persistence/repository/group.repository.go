@@ -101,7 +101,6 @@ func (gr *GroupRepository) Delete(ctx context.Context, group *model.Group) error
 	}
 
 	return nil
-
 }
 
 func (gr *GroupRepository) AddMember(ctx context.Context, group_user *model.GroupUser) error {

@@ -11,7 +11,7 @@ type Conversation struct {
 	ID            string          `json:"id" gorm:"primaryKey"`
 	UserIDOne     string          `json:"user_id_one" gorm:"column:user_id_one;size:36;not null;uniqueIndex:idx_conversation_users"`
 	UserIDTwo     string          `json:"user_id_two" gorm:"column:user_id_two;size:36;not null;uniqueIndex:idx_conversation_users"`
-	LastMessageID *string         `json:"last_message_id" gorm:"column:last_message_id;size:36;"`
+	LastMessageID *string         `json:"last_message_id" gorm:"column:last_message_id;size:36;default:null"`
 	CreatedAt     time.Time       `json:"created_at" gorm:"column:created_at"`
 	UpdatedAt     time.Time       `json:"updated_at" gorm:"column:updated_at"`
 	DeletedAt     *gorm.DeletedAt `json:"deleted_at" gorm:"column:deleted_at"`
