@@ -6,12 +6,14 @@ import (
 )
 
 type ConversationResponse struct {
-	ID          string           `json:"id"`
-	UserOne     UserResponse     `json:"user_one"`
-	UserTwo     UserResponse     `json:"user_two"`
-	LastMessage *MessageResponse `json:"last_message,omitempty"`
-	CreatedAt   time.Time        `json:"created_at"`
-	UpdatedAt   time.Time        `json:"updated_at"`
+	ID              string           `json:"id"`
+	UserOne         UserResponse     `json:"user_one"`
+	UserTwo         UserResponse     `json:"user_two"`
+	LastMessage     *MessageResponse `json:"last_message,omitempty"`
+	UserNicknameOne string           `json:"user_nickname_one"`
+	UserNicknameTwo string           `json:"user_nickname_two"`
+	CreatedAt       time.Time        `json:"created_at"`
+	UpdatedAt       time.Time        `json:"updated_at"`
 }
 
 type ListConversationRequest struct {

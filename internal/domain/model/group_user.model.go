@@ -11,6 +11,7 @@ type GroupUser struct {
 	ID        string          `json:"id" gorm:"primaryKey"`
 	UserID    string          `json:"user_id" gorm:"column:user_id;size:36;not null;uniqueIndex:idx_group_user"`
 	GroupID   string          `json:"group_id" gorm:"column:group_id;size:36;not null;uniqueIndex:idx_group_user"`
+	Nickname  string          `json:"nickname" gorm:"column:nickname;size:255"`
 	IsAdmin   bool            `json:"is_admin" gorm:"column:is_admin;default:false"`
 	CreatedAt time.Time       `json:"created_at" gorm:"column:created_at"`
 	UpdatedAt time.Time       `json:"updated_at" gorm:"column:updated_at"`

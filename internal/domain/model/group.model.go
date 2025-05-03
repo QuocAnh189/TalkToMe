@@ -14,6 +14,7 @@ type Group struct {
 	Description   string          `json:"description" gorm:"column:description"`
 	OwnerID       string          `json:"owner_id" gorm:"column:owner_id;size:36;not null"`
 	LastMessageID *string         `json:"last_message_id" gorm:"column:last_message_id;size:36"`
+	Background    string          `json:"background" gorm:"column:background;size:255;default:null"`
 	CreatedAt     time.Time       `json:"created_at" gorm:"column:created_at"`
 	UpdatedAt     time.Time       `json:"updated_at" gorm:"column:updated_at"`
 	DeletedAt     *gorm.DeletedAt `json:"deleted_at" gorm:"column:deleted_at"`

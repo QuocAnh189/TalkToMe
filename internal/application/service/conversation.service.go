@@ -29,17 +29,20 @@ func NewConversationService(
 }
 
 func (c *ConversationService) CreateConversation(ctx context.Context, req *dto.CreateConversationRequest) (*model.Conversation, error) {
-	_, err := c.userRepo.FindByID(ctx, req.UserIDOne)
+	user_one, err := c.userRepo.FindByID(ctx, req.UserIDOne)
 	if err != nil {
 		return nil, err
 	}
-	_, err = c.userRepo.FindByID(ctx, req.UserIDTwo)
+
+	user_two, err := c.userRepo.FindByID(ctx, req.UserIDTwo)
 	if err != nil {
 		return nil, err
 	}
 
 	var conversation *model.Conversation
 	utils.MapStruct(&conversation, req)
+	conversation.UserNicknameOne = user_one.Name
+	conversation.UserNicknameTwo = user_two.Name
 
 	err = c.conversationRepo.Create(ctx, conversation)
 	if err != nil {

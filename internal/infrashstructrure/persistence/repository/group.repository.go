@@ -28,10 +28,16 @@ func (gr *GroupRepository) Create(ctx context.Context, group *model.Group, membe
 		memberIDs = append(memberIDs, group.OwnerID)
 		group_users := make([]*model.GroupUser, len(memberIDs))
 		for i, memberID := range memberIDs {
+			var user model.User
+			if err := gr.db.FindById(ctx, memberID, &user); err != nil {
+				return err
+			}
+
 			group_users[i] = &model.GroupUser{
-				GroupID: group.ID,
-				UserID:  memberID,
-				IsAdmin: group.OwnerID == memberID,
+				GroupID:  group.ID,
+				UserID:   memberID,
+				Nickname: user.Name,
+				IsAdmin:  group.OwnerID == memberID,
 			}
 		}
 
