@@ -11,6 +11,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"gochat/internal/driver/api/middlewares"
 	"gochat/internal/driver/api/routes"
 	"gochat/internal/driver/websocket"
 	"gochat/internal/infrashstructrure/cache"
@@ -55,6 +56,8 @@ func (s *Server) Run() error {
 	if s.config.Environment == config.ProductionEnv {
 		gin.SetMode(gin.ReleaseMode)
 	}
+
+	s.engine.Use(middlewares.CorsMiddleware())
 
 	go s.hub.Run()
 
