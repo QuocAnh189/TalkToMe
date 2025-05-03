@@ -1,9 +1,11 @@
 //hooks
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 //ui
 import Avatar from '@ui/Avatar'
 import Modal from '@ui/Modal'
+import Button from '@ui/Button'
 
 interface GroupMemberProps {
   member: {
@@ -18,6 +20,12 @@ interface GroupMemberProps {
 
 const GroupMember = ({ member }: GroupMemberProps) => {
   const [showProfile, setShowProfile] = useState(false)
+  const navigate = useNavigate()
+
+  const handleViewFullProfile = () => {
+    setShowProfile(false)
+    navigate(`/user/${member.id}`)
+  }
 
   return (
     <>
@@ -32,7 +40,7 @@ const GroupMember = ({ member }: GroupMemberProps) => {
         </div>
       </div>
 
-      <Modal isOpen={showProfile} onClose={() => setShowProfile(false)} title="User Profile">
+      <Modal isOpen={showProfile} onClose={() => setShowProfile(false)} title="">
         <div className="flex flex-col items-center gap-4">
           <Avatar src={member.avatarURL} size="lg" online={member.isOnline} />
           <div className="text-center">
@@ -40,6 +48,9 @@ const GroupMember = ({ member }: GroupMemberProps) => {
             {member.email && <p className="text-base-content/60">{member.email}</p>}
             <p className="text-sm mt-2">{member.isOnline ? 'Active now' : 'Offline'}</p>
             {member.role && <p className="text-sm text-primary">{member.role}</p>}
+            <Button variant="primary" className="mt-4" onClick={handleViewFullProfile}>
+              View Profile
+            </Button>
           </div>
         </div>
       </Modal>

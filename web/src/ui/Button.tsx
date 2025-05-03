@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from 'react'
 import { cn } from '@utils/cn'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'link'
+  variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'link' | 'error'
   size?: 'sm' | 'md' | 'lg'
   loading?: boolean
   fullWidth?: boolean

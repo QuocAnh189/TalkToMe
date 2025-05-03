@@ -105,7 +105,7 @@ const mockConversations = [
         unreadCount: 1
     },
     {
-        id: '7',
+        id: '8',
         partner: {
             id: 'u7',
             name: 'Bob Johnson',
