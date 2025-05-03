@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -14,7 +14,6 @@ const config: Config = {
         containerSmall: '1024px',
         containerXs: '768px',
       },
-
       screens: {
         xs: '320px',
         sm: '375px',
@@ -25,26 +24,27 @@ const config: Config = {
         lgl: '1024px',
         xl: '1280px',
       },
-    },
-    colors: {
-      primary: '#3490dc', 
-      secondary: '#6cb2eb', 
-      accent: '#f6993f', 
-      neutral: '#3d4451', 
-      'base-100': '#ffffff', 
-      info: '#2094f3',
-      success: '#38c172',
-      warning: '#ffed4a',
-      error: '#e3342f',
-      'message-sent': '#e2e8f0',
-      'message-text-sent': '#2d3748', 
-      'message-received': '#ffffff', 
-      'message-text-received': '#2d3748', 
-      'sidebar-bg': '#f7fafc', 
-      'header-bg': '#ffffff',
-      'border-color': '#e5e7eb', 
+      colors: {
+        'app-primary': '#3490dc',
+        'app-secondary': '#6cb2eb',
+        'app-secondaryLight': '#e3f2fd',
+        'app-accent': '#f6993f',
+        'app-neutral': '#3d4451',
+        'app-base-100': '#ffffff',
+        'app-info': '#2094f3',
+        'app-success': '#38c172',
+        'app-warning': '#ffed4a',
+        'app-error': '#e3342f',
+        'app-message-sent': '#e2e8f0',
+        'app-message-text-sent': '#2d3748',
+        'app-message-received': '#ffffff',
+        'app-message-text-received': '#2d3748',
+        'app-sidebar-bg': '#f7fafc',
+        'app-header-bg': '#ffffff',
+        'app-border-color': '#e5e7eb',
+      },
     },
   },
   plugins: [],
-}
-export default config
+};
+export default config;

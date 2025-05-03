@@ -5,7 +5,7 @@ export interface IMessage {
   id: string
   message: string
   senderId: string
-  sender?: IUser
+  sender?: IUser|any
   groupId?: string
   conversationId?: string
   attachments?: IMessageAttachment[]

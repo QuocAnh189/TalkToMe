@@ -2,6 +2,9 @@ import { cn } from '@utils/cn'
 import { IConversation } from '@interfaces/conversation'
 import Avatar from './Avatar'
 
+//assets
+import user_default_img from '@assets/images/user_default.png'
+
 interface ConversationItemProps {
   conversation: IConversation
   active?: boolean
@@ -19,7 +22,12 @@ const ConversationItem = ({ conversation, active, onClick, className }: Conversa
       )}
       onClick={onClick}
     >
-      <Avatar src={conversation.partner?.avatarURL} alt={conversation.partner?.name} online={false} size="md" />
+      <Avatar
+        src={conversation.partner?.avatarURL || user_default_img}
+        alt={conversation.partner?.name}
+        online={false}
+        size="md"
+      />
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold truncate">{conversation.partner?.name}</h3>

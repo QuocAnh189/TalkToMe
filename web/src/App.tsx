@@ -10,6 +10,7 @@ const LoginPage = lazy(() => import('@pages/auth/Login'))
 const RegisterPage = lazy(() => import('@pages/auth/Register'))
 const HomePage = lazy(() => import('@pages/home/Home'))
 const ProfilePage = lazy(() => import('@pages/profile/Profile'))
+const NotFound = lazy(() => import('@pages/errors/NotFound'))
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/profile" element={<ProfilePage />} />
           </Route>
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

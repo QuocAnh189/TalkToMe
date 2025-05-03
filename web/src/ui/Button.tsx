@@ -6,6 +6,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg'
   loading?: boolean
   fullWidth?: boolean
+  color?: string
 }
 
 const Button = ({
@@ -16,6 +17,7 @@ const Button = ({
   fullWidth = false,
   className,
   disabled,
+  color,
   ...props
 }: ButtonProps) => {
   const sizeClasses = {
@@ -26,7 +28,15 @@ const Button = ({
 
   return (
     <button
-      className={cn('btn', `btn-${variant}`, sizeClasses[size], fullWidth && 'w-full', loading && 'loading', className)}
+      className={cn(
+        'btn',
+        `btn-${variant}`,
+        color && `bg-[${color}]`,
+        sizeClasses[size],
+        fullWidth && 'w-full',
+        loading && 'loading',
+        className,
+      )}
       disabled={disabled || loading}
       {...props}
     >
