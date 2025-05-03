@@ -25,6 +25,7 @@
       "@interfaces/*": ["interfaces/*"],
       "@pages/*": ["pages/*"],
       "@redux/*": ["redux/*"],
+      "@ui/*": ["ui/*"],
       "@utils/*": ["utils/*"]
     }
   },

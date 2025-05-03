@@ -15,6 +15,7 @@ export default defineConfig({
       '@interfaces': '/src/interfaces',
       '@pages': '/src/pages',
       '@redux': '/src/redux',
+      '@ui': '/src/ui',
       '@utils': '/src/utils',
     },
   },
