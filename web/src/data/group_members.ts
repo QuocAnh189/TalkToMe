@@ -5,7 +5,7 @@ export const mockGroupMembers = [
     nickname: 'John',
     avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
     isOnline: true,
-    role: 'admin'
+    isAdmin: true
   },
   {
     id: 'u2',
@@ -13,7 +13,7 @@ export const mockGroupMembers = [
     nickname: 'Alice',
     avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alice',
     isOnline: false,
-    role: 'member'
+    isAdmin: false
   },
   {
     id: 'u3',
@@ -21,7 +21,7 @@ export const mockGroupMembers = [
     nickname: 'Bob',
     avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Bob',
     isOnline: true,
-    role: 'member'
+    isAdmin:  false
   },
   {
     id: 'u4',
@@ -29,7 +29,7 @@ export const mockGroupMembers = [
     nickname: 'Emma',
     avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emma',
     isOnline: false,
-    role: 'member'
+    isAdmin: false
   },
   {
     id: 'u5',
@@ -37,6 +37,6 @@ export const mockGroupMembers = [
     nickname: 'Michael',
     avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Michael',
     isOnline: true,
-    role: 'member'
+    isAdmin: false
   }
 ]

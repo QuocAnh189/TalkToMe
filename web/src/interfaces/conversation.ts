@@ -1,17 +1,27 @@
-import { IUser } from "./user"
-import { IMessage } from "./message"
-
 export interface IConversation {
-  id: string
-  userId: string
-  partnerId: string
-  partner?: IUser
-  lastMessage?: IMessage
-  unreadCount: number
-  createdAt: string
-  updatedAt: string
+  id: number;
+  name: string;
+  description: string | null; 
+  is_group: boolean;
+  is_user: boolean;
+  owner_id: number;
+  members: User[]; 
+  user_ids: number[];
+  created_at: string; 
+  updated_at: string; 
+  last_message: Message | null;
 }
 
-export interface CreateConversationRequest {
-  partnerId: string
+interface Message {
+  id: number;
+  content: string;
+  sender: User;
+  created_at: string;
+}
+
+interface User {
+  id: string
+  name: string
+  email: string
+  avatarURL: string
 }

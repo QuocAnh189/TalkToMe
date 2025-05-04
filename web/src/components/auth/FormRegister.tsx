@@ -10,6 +10,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { MdEmail } from 'react-icons/md'
 import { FaRegUser } from 'react-icons/fa'
 import { BsLockFill } from 'react-icons/bs'
+
 interface Props {}
 
 const FormRegister = (_: Props) => {

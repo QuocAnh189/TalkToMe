@@ -3,9 +3,9 @@ export interface IUser {
   name: string
   email: string
   avatarURL: string
-  role: string
-  createdAt: string
-  updatedAt: string
+  role?: string
+  createdAt?: string
+  updatedAt?: string
 }
 
 export interface IAuth {
@@ -25,4 +25,12 @@ export interface SignUpRequest {
   password: string
   role: string
   avatar?: File
+}
+
+export interface ISearchUser {
+  id: string
+  name: string
+  email: string
+  avatarURL: string
+  isFriend: boolean
 }

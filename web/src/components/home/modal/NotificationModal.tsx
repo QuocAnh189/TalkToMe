@@ -1,6 +1,18 @@
+//hooks
 import { useState } from 'react'
+
+//ui
 import Modal from '@ui/Modal'
 import Avatar from '@ui/Avatar'
+
+//data
+import { mockNotifications } from '../../../data/notification'
+
+//interfaces
+import { INotification } from '@interfaces/notification'
+
+//libs
+import { formatDistanceToNow } from 'date-fns'
 
 interface NotificationModalProps {
   isOpen: boolean
@@ -10,116 +22,13 @@ interface NotificationModalProps {
 const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
   const [activeTab, setActiveTab] = useState<'friend' | 'group'>('friend')
 
-  // Mock data - replace with actual data from your backend
-  const friendRequests = [
-    {
-      id: '1',
-      user: {
-        id: 'user1',
-        name: 'John Doe',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
-      },
-      timestamp: new Date().toISOString(),
-    },
-    {
-      id: '2',
-      user: {
-        id: 'user2',
-        name: 'Emma Wilson',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emma',
-      },
-      timestamp: new Date().toISOString(),
-    },
-    {
-      id: '3',
-      user: {
-        id: 'user3',
-        name: 'Michael Chen',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Michael',
-      },
-      timestamp: new Date().toISOString(),
-    },
-    {
-      id: '4',
-      user: {
-        id: 'user4',
-        name: 'Sarah Johnson',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah',
-      },
-      timestamp: new Date().toISOString(),
-    },
-    {
-      id: '5',
-      user: {
-        id: 'user5',
-        name: 'David Kim',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=David',
-      },
-      timestamp: new Date().toISOString(),
-    },
-    {
-      id: '6',
-      user: {
-        id: 'user6',
-        name: 'Lisa Garcia',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa',
-      },
-      timestamp: new Date().toISOString(),
-    },
-    {
-      id: '7',
-      user: {
-        id: 'user7',
-        name: 'Alex Taylor',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alex',
-      },
-      timestamp: new Date().toISOString(),
-    },
-    {
-      id: '8',
-      user: {
-        id: 'user8',
-        name: 'Sophia Martinez',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sophia',
-      },
-      timestamp: new Date().toISOString(),
-    },
-    {
-      id: '9',
-      user: {
-        id: 'user9',
-        name: 'James Wilson',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=James',
-      },
-      timestamp: new Date().toISOString(),
-    },
-    {
-      id: '10',
-      user: {
-        id: 'user10',
-        name: 'Olivia Brown',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Olivia',
-      },
-      timestamp: new Date().toISOString(),
-    },
-  ]
+  const friendRequests = mockNotifications.filter(
+    (notification: INotification) => notification.type === 'friend_request',
+  )
 
-  const groupNotifications = [
-    {
-      id: '1',
-      type: 'add',
-      group: {
-        id: 'group1',
-        name: 'Project Team',
-      },
-      user: {
-        id: 'user2',
-        name: 'Jane Smith',
-        avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane',
-      },
-      timestamp: new Date().toISOString(),
-    },
-  ]
+  const groupNotifications = mockNotifications.filter((notification: INotification) =>
+    notification.type.startsWith('group_'),
+  )
 
   const handleAcceptFriend = (userId: string) => {
     console.log('Accepting friend request:', userId)
@@ -141,7 +50,7 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
             }`}
             onClick={() => setActiveTab('friend')}
           >
-            Friend Requests
+            Friend Requests {friendRequests.length > 0 && `(${friendRequests.length})`}
           </button>
           <button
             className={`flex-1 py-2 px-4 rounded-lg transition-colors ${
@@ -149,25 +58,34 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
             }`}
             onClick={() => setActiveTab('group')}
           >
-            Group Notifications
+            Group Notifications {groupNotifications.length > 0 && `(${groupNotifications.length})`}
           </button>
         </div>
 
         <div className="max-h-[400px] overflow-y-auto">
           {activeTab === 'friend' ? (
             <div className="space-y-4">
-              {friendRequests.map((request) => (
-                <div key={request.id} className="flex items-center gap-4 p-4 bg-base-100 rounded-lg">
-                  <Avatar src={request.user.avatarURL} size="md" />
+              {friendRequests.map((notification: INotification) => (
+                <div key={notification.id} className="flex items-center gap-4 p-4 bg-base-100 rounded-lg">
+                  <Avatar src={notification.data.user.avatarURL} size="md" />
                   <div className="flex-1">
-                    <h3 className="font-medium">{request.user.name}</h3>
-                    <p className="text-sm text-base-content/60">Sent you a friend request</p>
+                    <h3 className="font-medium">{notification.data.user.name}</h3>
+                    <p className="text-sm text-base-content/60">{notification.content}</p>
+                    <p className="text-xs text-base-content/40 mt-1">
+                      {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
+                    </p>
                   </div>
                   <div className="flex gap-2">
-                    <button className="btn btn-primary btn-sm" onClick={() => handleAcceptFriend(request.user.id)}>
+                    <button
+                      className="btn btn-primary btn-sm"
+                      onClick={() => handleAcceptFriend(notification.data.user.id)}
+                    >
                       Accept
                     </button>
-                    <button className="btn btn-ghost btn-sm" onClick={() => handleRejectFriend(request.user.id)}>
+                    <button
+                      className="btn btn-ghost btn-sm"
+                      onClick={() => handleRejectFriend(notification.data.user.id)}
+                    >
                       Reject
                     </button>
                   </div>
@@ -175,16 +93,15 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
               ))}
             </div>
           ) : (
-            <div className="space-y-4 min-h-[300px]">
-              {groupNotifications.map((notification) => (
+            <div className="space-y-4">
+              {groupNotifications.map((notification: INotification) => (
                 <div key={notification.id} className="flex items-center gap-4 p-4 bg-base-100 rounded-lg">
-                  <Avatar src={notification.user.avatarURL} size="md" />
+                  <Avatar src={notification.data.user.avatarURL} size="md" />
                   <div className="flex-1">
-                    <h3 className="font-medium">{notification.user.name}</h3>
-                    <p className="text-sm text-base-content/60">
-                      {notification.type === 'add'
-                        ? `Added you to ${notification.group.name}`
-                        : `Removed you from ${notification.group.name}`}
+                    <h3 className="font-medium">{notification.data.user.name}</h3>
+                    <p className="text-sm text-base-content/60">{notification.content}</p>
+                    <p className="text-xs text-base-content/40 mt-1">
+                      {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
                     </p>
                   </div>
                 </div>

@@ -1,23 +1,22 @@
+//hooks
 import { useState } from 'react'
+
+//ui
 import Modal from '@ui/Modal'
 import Input from '@ui/Input'
 import Avatar from '@ui/Avatar'
 
+//interfaces
+import { IUser } from '@interfaces/user'
+
 //assets
 import group_default_img from '@assets/images/group_default.jpg'
-
-interface User {
-  id: string
-  name: string
-  email: string
-  avatarURL: string
-}
 
 interface CreateGroupModalProps {
   isOpen: boolean
   onClose: () => void
   onConfirm: (data: { name: string; description: string; avatar?: File; memberIds: string[] }) => void
-  availableUsers: User[]
+  availableUsers: IUser[]
   currentUserId: string
 }
 

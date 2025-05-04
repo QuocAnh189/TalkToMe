@@ -11,10 +11,10 @@ interface GroupMemberProps {
   member: {
     id: string
     name: string
+    email: string
     avatarURL: string
     isOnline: boolean
-    role?: string
-    email?: string
+    isAdmin: boolean
   }
 }
 
@@ -36,7 +36,7 @@ const GroupMember = ({ member }: GroupMemberProps) => {
         <Avatar src={member.avatarURL} size="sm" online={member.isOnline} />
         <div className="flex flex-col">
           <span className="font-medium">{member.name}</span>
-          {member.role && <span className="text-xs text-base-content/60">{member.role}</span>}
+          <span className="text-xs text-base-content/60">{member.isAdmin ? 'Admin' : 'Member'}</span>
         </div>
       </div>
 
@@ -47,7 +47,7 @@ const GroupMember = ({ member }: GroupMemberProps) => {
             <h3 className="text-xl font-bold">{member.name}</h3>
             {member.email && <p className="text-base-content/60">{member.email}</p>}
             <p className="text-sm mt-2">{member.isOnline ? 'Active now' : 'Offline'}</p>
-            {member.role && <p className="text-sm text-primary">{member.role}</p>}
+            <p className="text-sm text-primary">{member.isAdmin ? 'Admin' : 'Members'}</p>
             <Button variant="primary" className="mt-4" onClick={handleViewFullProfile}>
               View Profile
             </Button>

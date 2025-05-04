@@ -1,4 +1,7 @@
+//hooks
 import { useState } from 'react'
+
+//ui
 import Modal from '@ui/Modal'
 import Input from '@ui/Input'
 import Avatar from '@ui/Avatar'
@@ -9,20 +12,15 @@ import { BiSearch } from 'react-icons/bi'
 import { IoPersonAdd } from 'react-icons/io5'
 import { CgProfile } from 'react-icons/cg'
 
-interface User {
-  id: string
-  name: string
-  email: string
-  avatarURL: string
-  isFriend: boolean
-}
+//interfaces
+import { ISearchUser } from '@interfaces/user'
 
 interface SearchUsersModalProps {
   isOpen: boolean
   onClose: () => void
   onAddFriend: (userId: string) => void
   onViewProfile: (userId: string) => void
-  availableUsers: User[]
+  availableUsers: ISearchUser[]
   currentUserId: string
 }
 
@@ -73,7 +71,7 @@ const SearchUsersModal = ({
         </div>
 
         {viewMode === 'grid' ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-[600px] overflow-y-auto p-2">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 max-h-[600px] overflow-y-auto p-2">
             {filteredUsers.map((user) => (
               <div
                 key={user.id}
@@ -82,7 +80,7 @@ const SearchUsersModal = ({
                 <div className="flex flex-col items-center text-center">
                   <Avatar src={user.avatarURL} size="lg" className="mb-3 hover:opacity-80 transition-opacity" />
                   <h3 className="font-semibold text-lg mb-1">{user.name}</h3>
-                  <p className="text-sm text-base-content/60 mb-3">{user.email}</p>
+                  <p className="w-40 text-sm text-base-content/60 mb-3 truncate">{user.email}</p>
                   <div>
                     <IconButton tooltip="View Profile" onClick={() => onViewProfile(user.id)}>
                       <CgProfile className="w-5 h-5" />
@@ -107,7 +105,7 @@ const SearchUsersModal = ({
                 <Avatar src={user.avatarURL} size="md" className="cursor-pointer" />
                 <div className="flex-1 cursor-pointer">
                   <div className="font-medium">{user.name}</div>
-                  <div className="text-sm text-base-content/60">{user.email}</div>
+                  <div className="text-sm text-base-content/60 truncate">{user.email}</div>
                 </div>
                 <IconButton tooltip="View Profile" onClick={() => onViewProfile(user.id)}>
                   <CgProfile className="w-5 h-5" />
