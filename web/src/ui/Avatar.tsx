@@ -1,5 +1,8 @@
 import { cn } from '@utils/cn'
 
+//assets
+import avatar_default_img from '@assets/images/user_default.png'
+
 interface AvatarProps {
   src?: string
   alt?: string
@@ -20,7 +23,7 @@ const Avatar = ({ src, alt, size = 'md', online = false, className }: AvatarProp
     <div className="relative">
       <div className={cn('avatar', online && 'online', className)}>
         <div className={cn('rounded-full', sizeClasses[size])}>
-          <img src={src || '/default-avatar.png'} alt={alt || 'User avatar'} />
+          <img src={src || avatar_default_img} alt={alt || 'User avatar'} />
         </div>
       </div>
     </div>

@@ -1,36 +1,89 @@
 //hooks
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '@hooks/useRedux'
+import { useSignInMutation } from '@redux/services/auth'
 
 //ui
 import Button from '@ui/Button'
 import Input from '@ui/Input'
+import Loading from '@ui/Loading'
+
+//components
+import toast from 'react-hot-toast'
 
 //icons
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { MdEmail } from 'react-icons/md'
 import { BsLockFill } from 'react-icons/bs'
 
-interface Props {}
+//interfaces
+import { SignInRequest } from '@interfaces/user'
 
-const FormLogin = (_: Props) => {
+//store
+import { setAuth } from '@redux/slices/auth.slice'
+
+const initForm: SignInRequest = {
+  email: '',
+  password: '',
+}
+
+const FormLogin = () => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const [showPassword, setShowPassword] = useState<boolean>(false)
 
-  const handleSubmit = () => {
-    navigate('/')
+  const [Login, { isLoading }] = useSignInMutation()
+
+  const [form, setForm] = useState<SignInRequest>(initForm)
+
+  const handleChangeForm = (name: string, value: string) => {
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleLogin = async () => {
+    try {
+      const result = await Login(form).unwrap()
+      console.log(result)
+
+      if (result) {
+        dispatch(setAuth(result))
+        localStorage.setItem(
+          'token',
+          JSON.stringify({
+            accessToken: result.accessToken,
+            refreshToken: result.refreshToken,
+          }),
+        )
+        localStorage.setItem('user', JSON.stringify(result.user))
+        toast.success('Login successfully.')
+        navigate('/')
+      }
+    } catch (e: any) {
+      toast.error('Something went wrong.')
+    }
   }
 
   return (
     <div className="flex flex-col h-full items-center">
-      <form onSubmit={() => {}} className="mt-4 flex flex-col w-4/5 sm:w-full gap-6">
-        <Input startIcon={<MdEmail />} label="Email" placeholder="Email" type="email" className="mb-6" />
+      <div className="mt-4 flex flex-col w-4/5 sm:w-full gap-6">
+        <Input
+          value={form.email}
+          onChange={(e) => handleChangeForm('email', e.target.value)}
+          startIcon={<MdEmail />}
+          label="Email"
+          placeholder="Email"
+          type="email"
+          className="mb-6"
+        />
         <Input
           startIcon={<BsLockFill />}
           label="Password"
           placeholder="Password"
           type={showPassword ? 'text' : 'password'}
           className="mb-6"
+          value={form.password}
+          onChange={(e) => handleChangeForm('password', e.target.value)}
           endIcon={showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
           onEndIconClick={() => setShowPassword(!showPassword)}
         />
@@ -44,10 +97,10 @@ const FormLogin = (_: Props) => {
             </a>
           </div>
         </div>
-        <Button onClick={handleSubmit} type="submit" className="w-full mt-10" color="#6cb2eb">
-          <span className="text-white">Sign In</span>
+        <Button onClick={handleLogin} className="w-full mt-10" color="#6cb2eb">
+          <span className="text-white">{isLoading ? <Loading /> : 'Sign in'}</span>
         </Button>
-      </form>
+      </div>
       <div className="w-4/5 sm:w-full mt-3 flex flex-col gap-y-2"></div>
     </div>
   )

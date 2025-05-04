@@ -5,7 +5,7 @@ export interface IGroup {
   id: string
   name: string
   description: string
-  avatarURL: string
+  avatar_url: string
   ownerId: string
   owner?: IUser
   members?: IUser[]

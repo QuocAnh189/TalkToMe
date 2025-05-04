@@ -6,7 +6,7 @@ import Avatar from '@ui/Avatar'
 interface User {
   id: string
   name: string
-  avatarURL: string
+  avatar_url: string
   nickname?: string
 }
 
@@ -18,12 +18,12 @@ interface ChangePrivateNicknameModalProps {
   friendUser: User
 }
 
-const ChangePrivateNicknameModal = ({ 
-  isOpen, 
-  onClose, 
-  onConfirm, 
+const ChangePrivateNicknameModal = ({
+  isOpen,
+  onClose,
+  onConfirm,
   currentUser,
-  friendUser 
+  friendUser,
 }: ChangePrivateNicknameModalProps) => {
   const [selectedUser, setSelectedUser] = useState<'me' | 'friend'>('me')
   const [nickname, setNickname] = useState('')
@@ -52,13 +52,11 @@ const ChangePrivateNicknameModal = ({
             onClick={() => handleUserSelect('me')}
           >
             <div className="flex items-center gap-3">
-              <Avatar src={currentUser.avatarURL} size="sm" />
+              <Avatar src={currentUser.avatar_url} size="sm" />
               <div>
                 <div className="font-medium">Me ({currentUser.name})</div>
                 {currentUser.nickname && (
-                  <div className="text-sm text-base-content/60">
-                    Nickname: {currentUser.nickname}
-                  </div>
+                  <div className="text-sm text-base-content/60">Nickname: {currentUser.nickname}</div>
                 )}
               </div>
             </div>
@@ -71,13 +69,11 @@ const ChangePrivateNicknameModal = ({
             onClick={() => handleUserSelect('friend')}
           >
             <div className="flex items-center gap-3">
-              <Avatar src={friendUser.avatarURL} size="sm" />
+              <Avatar src={friendUser.avatar_url} size="sm" />
               <div>
                 <div className="font-medium">{friendUser.name}</div>
                 {friendUser.nickname && (
-                  <div className="text-sm text-base-content/60">
-                    Nickname: {friendUser.nickname}
-                  </div>
+                  <div className="text-sm text-base-content/60">Nickname: {friendUser.nickname}</div>
                 )}
               </div>
             </div>
@@ -92,8 +88,8 @@ const ChangePrivateNicknameModal = ({
         />
 
         <div className="flex justify-end gap-2 mt-6">
-          <button 
-            className="btn btn-ghost" 
+          <button
+            className="btn btn-ghost"
             onClick={() => {
               onClose()
               setNickname('')
@@ -102,11 +98,7 @@ const ChangePrivateNicknameModal = ({
           >
             Cancel
           </button>
-          <button
-            className="btn btn-primary"
-            onClick={handleSubmit}
-            disabled={!nickname.trim()}
-          >
+          <button className="btn btn-primary" onClick={handleSubmit} disabled={!nickname.trim()}>
             Save
           </button>
         </div>

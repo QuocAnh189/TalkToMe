@@ -14,7 +14,7 @@ const MessageBubble = ({ message, isOwn = false, showAvatar = true, className }:
   return (
     <div className={cn('flex gap-2', isOwn ? 'flex-row-reverse' : 'flex-row', className)}>
       {showAvatar && (
-        <Avatar src={message.sender?.avatarURL} alt={message.sender?.name} size="sm" className="flex-shrink-0" />
+        <Avatar src={message.sender?.avatar_url} alt={message.sender?.name} size="sm" className="flex-shrink-0" />
       )}
       <div className={cn('flex flex-col gap-1 max-w-[70%]', isOwn && 'items-end')}>
         {!isOwn && <span className="text-xs text-base-content/60">{message.sender?.name}</span>}

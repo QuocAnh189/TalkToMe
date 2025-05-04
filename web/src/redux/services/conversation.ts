@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react'
 import baseQueryWithReauth from '@redux/interceptor/baseQueryWithReauth'
 
 //interfaces
-import { IConversation, CreateConversationRequest } from '@interfaces/conversation'
+import { IConversation } from '@interfaces/conversation'
 
 export const apiConversation = createApi({
   reducerPath: 'apiConversation',
@@ -29,7 +29,7 @@ export const apiConversation = createApi({
       transformErrorResponse: (error) => error.data,
     }),
 
-    createConversation: builder.mutation<IConversation, CreateConversationRequest>({
+    createConversation: builder.mutation<IConversation, any>({
       query: (data) => ({
         url: '/conversations',
         method: 'POST',

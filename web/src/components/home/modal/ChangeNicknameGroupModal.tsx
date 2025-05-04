@@ -7,7 +7,7 @@ interface GroupMember {
   id: string
   name: string
   nickname?: string
-  avatarURL: string
+  avatar_url: string
 }
 
 interface ChangeNicknameModalProps {
@@ -60,7 +60,7 @@ const ChangeNicknameGroupModal = ({
                   setNickname(member.nickname || '')
                 }}
               >
-                <Avatar src={member.avatarURL} size="sm" />
+                <Avatar src={member.avatar_url} size="sm" />
                 <div>
                   <div className="font-medium">{member.name}</div>
                   {member.nickname && <div className="text-sm text-base-content/60">Nickname: {member.nickname}</div>}

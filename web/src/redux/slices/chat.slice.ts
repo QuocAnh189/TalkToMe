@@ -3,6 +3,8 @@ import { IMessage } from '@interfaces/message'
 import { IConversation } from '@interfaces/conversation'
 import { IGroup } from '@interfaces/group'
 
+export const ChatSliceKey = 'chat'
+
 interface ChatState {
   activeChat: {
     id: string
@@ -25,7 +27,7 @@ const initialState: ChatState = {
 }
 
 const chatSlice = createSlice({
-  name: 'chat',
+  name: ChatSliceKey,
   initialState,
   reducers: {
     setActiveChat: (state, action: PayloadAction<ChatState['activeChat']>) => {

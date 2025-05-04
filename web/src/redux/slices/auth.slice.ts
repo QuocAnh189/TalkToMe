@@ -1,37 +1,30 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IUser } from '@interfaces/user'
+//redux
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-interface AuthState {
-  user: IUser | null
-  isAuthenticated: boolean
-  loading: boolean
+//interfaces
+import { IAuth } from '@interfaces/user'
+
+export const AuthSliceKey = 'auth'
+
+type InitialType = {
+  auth: IAuth | null
 }
 
-const initialState: AuthState = {
-  user: null,
-  isAuthenticated: false,
-  loading: false
-}
+const initialState = {
+  auth: null,
+} as InitialType
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: AuthSliceKey,
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<IUser | null>) => {
-      state.user = action.payload
-      state.isAuthenticated = !!action.payload
+    setAuth: (state, action: PayloadAction<IAuth | null>) => {
+      state.auth = action.payload
     },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload
-    },
-    logout: (state) => {
-      state.user = null
-      state.isAuthenticated = false
-      localStorage.removeItem('token')
-      localStorage.removeItem('user')
-    }
-  }
+  },
 })
 
-export const { setUser, setLoading, logout } = authSlice.actions
-export default authSlice.reducer
+export const { setAuth } = authSlice.actions
+
+const authReducer = authSlice.reducer
+export default authReducer

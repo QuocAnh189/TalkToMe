@@ -9,7 +9,7 @@ export const mockMessages: IMessage[] = [
       id: '1',
       name: 'John Doe',
       email: 'john@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:00:00Z',
@@ -23,7 +23,7 @@ export const mockMessages: IMessage[] = [
       id: '2',
       name: 'Jane Smith',
       email: 'jane@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:01:00Z',
@@ -37,7 +37,7 @@ export const mockMessages: IMessage[] = [
       id: '1',
       name: 'John Doe',
       email: 'john@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:02:00Z',
@@ -51,7 +51,7 @@ export const mockMessages: IMessage[] = [
       id: '2',
       name: 'Jane Smith',
       email: 'jane@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:05:00Z',
@@ -65,7 +65,7 @@ export const mockMessages: IMessage[] = [
       id: '1',
       name: 'John Doe',
       email: 'john@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:07:00Z',
@@ -79,7 +79,7 @@ export const mockMessages: IMessage[] = [
       id: '2',
       name: 'Jane Smith',
       email: 'jane@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:10:00Z',
@@ -93,7 +93,7 @@ export const mockMessages: IMessage[] = [
       id: '1',
       name: 'John Doe',
       email: 'john@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:12:00Z',
@@ -107,7 +107,7 @@ export const mockMessages: IMessage[] = [
       id: '2',
       name: 'Jane Smith',
       email: 'jane@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:15:00Z',
@@ -121,7 +121,7 @@ export const mockMessages: IMessage[] = [
       id: '1',
       name: 'John Doe',
       email: 'john@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:17:00Z',
@@ -135,7 +135,7 @@ export const mockMessages: IMessage[] = [
       id: '2',
       name: 'Jane Smith',
       email: 'jane@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:20:00Z',
@@ -149,7 +149,7 @@ export const mockMessages: IMessage[] = [
       id: '1',
       name: 'John Doe',
       email: 'john@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:22:00Z',
@@ -163,7 +163,7 @@ export const mockMessages: IMessage[] = [
       id: '2',
       name: 'Jane Smith',
       email: 'jane@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:25:00Z',
@@ -177,7 +177,7 @@ export const mockMessages: IMessage[] = [
       id: '1',
       name: 'John Doe',
       email: 'john@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
     },
     conversationId: '123',
     createdAt: '2024-01-01T10:27:00Z',

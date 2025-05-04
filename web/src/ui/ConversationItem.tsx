@@ -20,7 +20,7 @@ const ConversationItem = ({ conversation, active, onClick, className }: Conversa
       onClick={onClick}
     >
       <Avatar
-        src={conversation.is_group ? conversation.members[0]?.avatarURL : conversation.members[1]?.avatarURL}
+        src={conversation.is_group ? conversation.members[0]?.avatar_url : conversation.members[1]?.avatar_url}
         alt={conversation.name}
         online={false}
         size="md"

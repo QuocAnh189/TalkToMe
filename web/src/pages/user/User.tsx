@@ -12,7 +12,7 @@ const mockUser = {
   id: '123',
   name: 'John Doe',
   email: 'john.doe@example.com',
-  avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
+  avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
   role: 'member',
   createdAt: '2023-01-15T08:00:00.000Z',
   isOnline: true,
@@ -84,7 +84,7 @@ const User = () => {
                 <span>Back Home</span>
               </button>
               <div className="flex flex-col items-center -mt-20">
-                <Avatar src={user.avatarURL} size="xl" className="ring-4 ring-white" />
+                <Avatar src={user.avatar_url} size="xl" className="ring-4 ring-white" />
                 <h1 className="text-3xl font-bold mt-4">{user.name}</h1>
                 <p className="text-gray-600 mt-1">{user.email}</p>
 

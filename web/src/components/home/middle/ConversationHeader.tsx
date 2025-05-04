@@ -46,14 +46,14 @@ const ConversationHeader = () => {
   const mockCurrentUser = {
     id: '1',
     name: 'Current User',
-    avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser',
+    avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser',
     nickname: 'Me',
   }
 
   const mockFriendUser = {
     id: '2',
     name: 'Anh Quoc',
-    avatarURL: logo_img,
+    avatar_url: logo_img,
     nickname: 'Friend',
   }
 
@@ -99,13 +99,13 @@ const ConversationHeader = () => {
       id: '3',
       name: 'Bob Wilson',
       email: 'bob@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Bob',
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Bob',
     },
     {
       id: '4',
       name: 'Emma Davis',
       email: 'emma@example.com',
-      avatarURL: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emma',
+      avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emma',
     },
   ]
 

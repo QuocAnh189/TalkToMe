@@ -134,48 +134,128 @@ func (c *Client) processMessage(msg Message) {
 	switch msg.Type {
 	case "private_message":
 		if msg.TargetUserID != "" && msg.Content != "" {
-			c.hub.sendMessage(c, msg.TargetUserID, []byte(msg.Content))
+			// Create response message with type and sender info
+			responseMsg := Message{
+				Type:         "private_message",
+				Content:      msg.Content,
+				SenderUserID: c.UserID,
+			}
+			msgBytes, err := json.Marshal(responseMsg)
+			if err != nil {
+				logger.Errorf("Error marshalling message: %v", err)
+				return
+			}
+			c.hub.sendMessage(c, msg.TargetUserID, msgBytes)
 		} else {
 			logger.Warnf("Invalid private message format from UserID: %s", c.UserID)
 		}
 	case "join_group":
 		if msg.GroupID != "" {
+			responseMsg := Message{
+				Type:         "join_group",
+				GroupID:      msg.GroupID,
+				SenderUserID: c.UserID,
+			}
+			msgBytes, err := json.Marshal(responseMsg)
+			if err != nil {
+				logger.Errorf("Error marshalling message: %v", err)
+				return
+			}
 			c.hub.joinGroup(c, msg.GroupID)
+			c.hub.broadcast <- msgBytes
 		} else {
 			logger.Warnf("Invalid join group format from UserID: %s", c.UserID)
 		}
 	case "group_message":
 		if msg.GroupID != "" && msg.Content != "" {
-			c.hub.sendMessageToGroup(c, msg.GroupID, []byte(msg.Content))
+			responseMsg := Message{
+				Type:         "group_message",
+				GroupID:      msg.GroupID,
+				Content:      msg.Content,
+				SenderUserID: c.UserID,
+			}
+			msgBytes, err := json.Marshal(responseMsg)
+			if err != nil {
+				logger.Errorf("Error marshalling message: %v", err)
+				return
+			}
+			c.hub.sendMessageToGroup(c, msg.GroupID, msgBytes)
 		} else {
 			logger.Warnf("Invalid group message format from UserID: %s", c.UserID)
 		}
 	case "friend_request":
 		if msg.TargetUserID != "" {
+			responseMsg := Message{
+				Type:         "friend_request",
+				SenderUserID: c.UserID,
+			}
+			msgBytes, err := json.Marshal(responseMsg)
+			if err != nil {
+				logger.Errorf("Error marshalling message: %v", err)
+				return
+			}
 			c.hub.sendFriendRequest(c, msg.TargetUserID)
+			c.hub.sendMessage(c, msg.TargetUserID, msgBytes)
 		} else {
 			logger.Warnf("Invalid friend request format from UserID: %s", c.UserID)
 		}
 	case "accept_friend_request":
 		if msg.RequesterUserID != "" {
+			responseMsg := Message{
+				Type:            "accept_friend_request",
+				RequesterUserID: msg.RequesterUserID,
+				SenderUserID:    c.UserID,
+			}
+			msgBytes, err := json.Marshal(responseMsg)
+			if err != nil {
+				logger.Errorf("Error marshalling message: %v", err)
+				return
+			}
 			c.hub.acceptFriendRequest(c, msg.RequesterUserID)
+			c.hub.sendMessage(c, msg.RequesterUserID, msgBytes)
 		} else {
 			logger.Warnf("Invalid accept friend request format from UserID: %s", c.UserID)
 		}
 	case "add_to_group":
 		if msg.GroupID != "" && msg.TargetUserID != "" {
+			responseMsg := Message{
+				Type:         "add_to_group",
+				GroupID:      msg.GroupID,
+				TargetUserID: msg.TargetUserID,
+				SenderUserID: c.UserID,
+			}
+			msgBytes, err := json.Marshal(responseMsg)
+			if err != nil {
+				logger.Errorf("Error marshalling message: %v", err)
+				return
+			}
 			c.hub.addUserToGroup(c, msg.GroupID, msg.TargetUserID)
+			c.hub.sendMessage(c, msg.TargetUserID, msgBytes)
 		} else {
 			logger.Warnf("Invalid add to group format from UserID: %s", c.UserID)
 		}
 	case "remove_from_group":
 		if msg.GroupID != "" && msg.TargetUserID != "" {
+			responseMsg := Message{
+				Type:         "remove_from_group",
+				GroupID:      msg.GroupID,
+				TargetUserID: msg.TargetUserID,
+				SenderUserID: c.UserID,
+			}
+			msgBytes, err := json.Marshal(responseMsg)
+			if err != nil {
+				logger.Errorf("Error marshalling message: %v", err)
+				return
+			}
 			c.hub.removeUserFromGroup(c, msg.GroupID, msg.TargetUserID)
+			c.hub.sendMessage(c, msg.TargetUserID, msgBytes)
 		} else {
 			logger.Warnf("Invalid remove from group format from UserID: %s", c.UserID)
 		}
 	default:
 		logger.Warnf("Unknown message type from UserID: %s: %s", c.UserID, msg.Type)
-		c.hub.broadcast <- []byte(msg.Content)
+		msg.SenderUserID = c.UserID
+		msgBytes, _ := json.Marshal(msg)
+		c.hub.broadcast <- msgBytes
 	}
 }

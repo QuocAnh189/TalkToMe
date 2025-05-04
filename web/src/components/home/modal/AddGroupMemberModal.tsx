@@ -6,7 +6,7 @@ import Avatar from '@ui/Avatar'
 interface User {
   id: string
   name: string
-  avatarURL: string
+  avatar_url: string
   email: string
 }
 
@@ -67,7 +67,7 @@ const AddGroupMemberModal = ({
               onClick={() => handleToggleUser(user.id)}
             >
               <div className="flex-shrink-0">
-                <Avatar src={user.avatarURL} size="sm" />
+                <Avatar src={user.avatar_url} size="sm" />
               </div>
               <div className="flex-grow">
                 <div className="font-medium">{user.name}</div>

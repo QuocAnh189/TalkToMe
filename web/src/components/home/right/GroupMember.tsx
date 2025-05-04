@@ -12,7 +12,7 @@ interface GroupMemberProps {
     id: string
     name: string
     email: string
-    avatarURL: string
+    avatar_url: string
     isOnline: boolean
     isAdmin: boolean
   }
@@ -33,7 +33,7 @@ const GroupMember = ({ member }: GroupMemberProps) => {
         className="flex items-center gap-2 p-2 hover:bg-base-200 rounded-lg cursor-pointer transition-colors"
         onClick={() => setShowProfile(true)}
       >
-        <Avatar src={member.avatarURL} size="sm" online={member.isOnline} />
+        <Avatar src={member.avatar_url} size="sm" online={member.isOnline} />
         <div className="flex flex-col">
           <span className="font-medium">{member.name}</span>
           <span className="text-xs text-base-content/60">{member.isAdmin ? 'Admin' : 'Member'}</span>
@@ -42,7 +42,7 @@ const GroupMember = ({ member }: GroupMemberProps) => {
 
       <Modal isOpen={showProfile} onClose={() => setShowProfile(false)} title="">
         <div className="flex flex-col items-center gap-4">
-          <Avatar src={member.avatarURL} size="lg" online={member.isOnline} />
+          <Avatar src={member.avatar_url} size="lg" online={member.isOnline} />
           <div className="text-center">
             <h3 className="text-xl font-bold">{member.name}</h3>
             {member.email && <p className="text-base-content/60">{member.email}</p>}

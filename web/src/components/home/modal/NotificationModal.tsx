@@ -67,7 +67,7 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
             <div className="space-y-4">
               {friendRequests.map((notification: INotification) => (
                 <div key={notification.id} className="flex items-center gap-4 p-4 bg-base-100 rounded-lg">
-                  <Avatar src={notification.data.user.avatarURL} size="md" />
+                  <Avatar src={notification.data.user.avatar_url} size="md" />
                   <div className="flex-1">
                     <h3 className="font-medium">{notification.data.user.name}</h3>
                     <p className="text-sm text-base-content/60">{notification.content}</p>
@@ -96,7 +96,7 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
             <div className="space-y-4">
               {groupNotifications.map((notification: INotification) => (
                 <div key={notification.id} className="flex items-center gap-4 p-4 bg-base-100 rounded-lg">
-                  <Avatar src={notification.data.user.avatarURL} size="md" />
+                  <Avatar src={notification.data.user.avatar_url} size="md" />
                   <div className="flex-1">
                     <h3 className="font-medium">{notification.data.user.name}</h3>
                     <p className="text-sm text-base-content/60">{notification.content}</p>

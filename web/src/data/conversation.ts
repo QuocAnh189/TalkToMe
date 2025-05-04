@@ -12,13 +12,13 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       {
         id: "2",
         name: "John Doe",
         email: "john@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
       }
     ],
     user_ids: [1, 2],
@@ -31,7 +31,7 @@ export const mockConversations = [
         id: "2",
         name: "John Doe",
         email: "john@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
       },
       created_at: "2024-01-15T10:00:00Z"
     }
@@ -48,13 +48,13 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       {
         id: "3",
         name: "Emma Wilson",
         email: "emma@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma"
       }
     ],
     user_ids: [1, 3],
@@ -67,7 +67,7 @@ export const mockConversations = [
         id: "3",
         name: "Emma Wilson",
         email: "emma@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma"
       },
       created_at: "2024-01-15T09:30:00Z"
     }
@@ -84,13 +84,13 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       {
         id: "4",
         name: "Michael Chen",
         email: "michael@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
       }
     ],
     user_ids: [1, 4],
@@ -103,7 +103,7 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       created_at: "2024-01-14T15:20:00Z"
     }
@@ -120,13 +120,13 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       {
         id: "5",
         name: "Sarah Johnson",
         email: "sarah@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
       }
     ],
     user_ids: [1, 5],
@@ -139,7 +139,7 @@ export const mockConversations = [
         id: "5",
         name: "Sarah Johnson",
         email: "sarah@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
       },
       created_at: "2024-01-14T11:45:00Z"
     }
@@ -156,13 +156,13 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       {
         id: "6",
         name: "David Kim",
         email: "david@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
       }
     ],
     user_ids: [1, 6],
@@ -175,7 +175,7 @@ export const mockConversations = [
         id: "6",
         name: "David Kim",
         email: "david@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
       },
       created_at: "2024-01-13T16:15:00Z"
     }
@@ -193,19 +193,19 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       {
         id: "2",
         name: "John Doe",
         email: "john@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
       },
       {
         id: "3",
         name: "Emma Wilson",
         email: "emma@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma"
       }
     ],
     user_ids: [1, 2, 3],
@@ -218,7 +218,7 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       created_at: "2024-01-15T08:00:00Z"
     }
@@ -235,19 +235,19 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       {
         id: "4",
         name: "Michael Chen",
         email: "michael@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
       },
       {
         id: "5",
         name: "Sarah Johnson",
         email: "sarah@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
       }
     ],
     user_ids: [1, 4, 5],
@@ -260,7 +260,7 @@ export const mockConversations = [
         id: "4",
         name: "Michael Chen",
         email: "michael@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
       },
       created_at: "2024-01-14T13:30:00Z"
     }
@@ -277,19 +277,19 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       {
         id: "5",
         name: "Sarah Johnson",
         email: "sarah@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
       },
       {
         id: "6",
         name: "David Kim",
         email: "david@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
       }
     ],
     user_ids: [1, 5, 6],
@@ -302,7 +302,7 @@ export const mockConversations = [
         id: "5",
         name: "Sarah Johnson",
         email: "sarah@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
       },
       created_at: "2024-01-13T14:20:00Z"
     }
@@ -319,19 +319,19 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       {
         id: "2",
         name: "John Doe",
         email: "john@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
       },
       {
         id: "4",
         name: "Michael Chen",
         email: "michael@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
       }
     ],
     user_ids: [1, 2, 4],
@@ -344,7 +344,7 @@ export const mockConversations = [
         id: "2",
         name: "John Doe",
         email: "john@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
       },
       created_at: "2024-01-12T16:45:00Z"
     }
@@ -361,37 +361,37 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       {
         id: "2",
         name: "John Doe",
         email: "john@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
       },
       {
         id: "3",
         name: "Emma Wilson",
         email: "emma@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma"
       },
       {
         id: "4",
         name: "Michael Chen",
         email: "michael@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
       },
       {
         id: "5",
         name: "Sarah Johnson",
         email: "sarah@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
       },
       {
         id: "6",
         name: "David Kim",
         email: "david@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
       }
     ],
     user_ids: [1, 2, 3, 4, 5, 6],
@@ -404,7 +404,7 @@ export const mockConversations = [
         id: "1",
         name: "Current User",
         email: "current@example.com",
-        avatarURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
+        avatar_url: "https://api.dicebear.com/7.x/avataaars/svg?seed=CurrentUser"
       },
       created_at: "2024-01-11T09:00:00Z"
     }

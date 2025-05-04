@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 //slices
-import authReducer from './slices/auth.slice'
-import chatReducer from './slices/chat.slice'
-import uiReducer from './slices/ui.slice'
+import authReducer, { AuthSliceKey } from './slices/auth.slice'
+import chatReducer, { ChatSliceKey } from './slices/chat.slice'
 
 //services
 import { apiAuth } from './services/auth'
@@ -16,10 +15,6 @@ import { apiNotification } from './services/notification'
 
 const store = configureStore({
   reducer: {
-    auth: authReducer,
-    chat: chatReducer,
-    ui: uiReducer,
-    
     [apiAuth.reducerPath]: apiAuth.reducer,
     [apiUser.reducerPath]: apiUser.reducer,
     [apiMessage.reducerPath]: apiMessage.reducer,
@@ -27,6 +22,9 @@ const store = configureStore({
     [apiConversation.reducerPath]: apiConversation.reducer,
     [apiGroup.reducerPath]: apiGroup.reducer,
     [apiNotification.reducerPath]: apiNotification.reducer,
+
+    [AuthSliceKey]: authReducer,
+    [ChatSliceKey]: chatReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

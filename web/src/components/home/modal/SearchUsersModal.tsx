@@ -78,7 +78,7 @@ const SearchUsersModal = ({
                 className="bg-base-100 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
               >
                 <div className="flex flex-col items-center text-center">
-                  <Avatar src={user.avatarURL} size="lg" className="mb-3 hover:opacity-80 transition-opacity" />
+                  <Avatar src={user.avatar_url} size="lg" className="mb-3 hover:opacity-80 transition-opacity" />
                   <h3 className="font-semibold text-lg mb-1">{user.name}</h3>
                   <p className="w-40 text-sm text-base-content/60 mb-3 truncate">{user.email}</p>
                   <div>
@@ -102,7 +102,7 @@ const SearchUsersModal = ({
                 key={user.id}
                 className="flex items-center gap-3 py-3 px-6 rounded-lg hover:bg-base-200 transition-colors"
               >
-                <Avatar src={user.avatarURL} size="md" className="cursor-pointer" />
+                <Avatar src={user.avatar_url} size="md" className="cursor-pointer" />
                 <div className="flex-1 cursor-pointer">
                   <div className="font-medium">{user.name}</div>
                   <div className="text-sm text-base-content/60 truncate">{user.email}</div>

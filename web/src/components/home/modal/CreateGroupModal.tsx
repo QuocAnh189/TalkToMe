@@ -128,7 +128,7 @@ const CreateGroupModal = ({ isOpen, onClose, onConfirm, availableUsers, currentU
               }`}
               onClick={() => handleToggleUser(user.id)}
             >
-              <Avatar src={user.avatarURL} size="sm" />
+              <Avatar src={user.avatar_url} size="sm" />
               <div className="flex-1">
                 <div className="font-medium">{user.name}</div>
                 <div className="text-sm text-base-content/60">{user.email}</div>
