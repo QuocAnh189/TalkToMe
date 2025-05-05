@@ -27,13 +27,18 @@ func main() {
 	database, err := db.NewDatabase(cfg.DatabaseURI)
 	if err != nil {
 		logger.Fatal("Database connection error:", err)
-
 	}
 
 	err = migration.Migrate(database)
 	if err != nil {
 		logger.Fatal("Database migration error:", err)
 	}
+
+	// // Seed data one time
+	// err = migration.SeedData(database)
+	// if err != nil {
+	// 	logger.Fatal("Database seeding error:", err)
+	// }
 
 	//validation
 	validator := validation.New()
